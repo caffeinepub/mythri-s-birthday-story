@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap");
+
+@font-face {
+  font-family: "Parisienne";
+  src: url("/assets/fonts/Parisienne.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 13 0.008 250;
+    --foreground: 95 0 0;
+    --card: 16 0.008 250;
+    --card-foreground: 95 0 0;
+    --popover: 16 0.008 250;
+    --popover-foreground: 95 0 0;
+    --primary: 80 0.07 15;
+    --primary-foreground: 15 0.005 250;
+    --secondary: 20 0.008 250;
+    --secondary-foreground: 77 0.01 250;
+    --muted: 18 0.006 250;
+    --muted-foreground: 77 0.01 250;
+    --accent: 80 0.07 15;
+    --accent-foreground: 15 0.005 250;
+    --destructive: 50 0.2 25;
+    --destructive-foreground: 95 0 0;
+    --border: 22 0.01 250;
+    --input: 75 0.07 15;
+    --ring: 80 0.07 15;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Playfair Display", serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Fade-in animation for mount */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Section scroll reveal */
+.scroll-section {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Blinking cursor */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Polaroid tilt */
+.polaroid-tilt-left {
+  transform: rotate(-3deg);
+}
+.polaroid-tilt-right {
+  transform: rotate(4deg);
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: oklch(13% 0.008 250);
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(80% 0.07 15 / 0.5);
+  border-radius: 4px;
+}
+
+/* Scroll down arrow indicator */
+@keyframes bounceDown {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+.scroll-arrow {
+  width: 12px;
+  height: 12px;
+  border-right: 2px solid #e7b7be;
+  border-bottom: 2px solid #e7b7be;
+  transform: rotate(45deg);
+  animation: bounceDown 1.4s ease-in-out infinite;
+}
